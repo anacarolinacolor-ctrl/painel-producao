@@ -724,13 +724,21 @@
           "registro";
 
 
-        if (item) {
+      if (item) {
 
-          const percentual =
-            item["%"] ??
-            item.PERCENTUAL ??
-            item.PORCENTAGEM ??
-            "-";
+  const valorPercentual =
+    item["%"] ??
+    item.PERCENTUAL ??
+    item.PORCENTAGEM ??
+    "-";
+
+  const percentual =
+    valorPercentual !== "" &&
+    valorPercentual !== null &&
+    valorPercentual !== "-" &&
+    !isNaN(Number(valorPercentual))
+      ? (Number(valorPercentual) * 100).toFixed(0) + "%"
+      : "-";
 
 
           const codigo =
