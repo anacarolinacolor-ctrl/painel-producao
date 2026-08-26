@@ -1,1 +1,1281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Painel de Produção</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #020817;
+      color: white;
+    }
+
+    /* =========================
+       CABEÇALHO
+    ========================= */
+
+    header {
+      background: #0f172a;
+      border-bottom: 2px solid #1e293b;
+      padding: 18px 28px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .titulo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #60a5fa;
+    }
+
+    .subtitulo {
+      margin-top: 5px;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .data-hora {
+      text-align: right;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       INDICADORES
+    ========================= */
+
+    .indicadores {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+
+      padding: 18px 28px;
+    }
+
+    .indicador {
+      background: #111c31;
+      border: 1px solid #263650;
+      border-radius: 12px;
+
+      padding: 13px;
+
+      text-align: center;
+
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    .indicador-titulo {
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    .numero {
+      margin-top: 6px;
+
+      font-size: 29px;
+      font-weight: bold;
+    }
+
+    .verde {
+      color: #22c55e;
+    }
+
+    .amarelo {
+      color: #facc15;
+    }
+
+    .vermelho {
+      color: #ef4444;
+    }
+
+    .azul {
+      color: #38bdf8;
+    }
+
+    /* =========================
+       MÁQUINAS
+    ========================= */
+
+    .maquinas {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, minmax(280px, 1fr));
+
+      gap: 14px;
+
+      padding:
+        0 28px 30px;
+    }
+
+    .maquina {
+
+      background: #0f172a;
+
+      border:
+        1px solid #334155;
+
+      border-radius: 10px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    .maquina-titulo {
+
+      background: #86b96f;
+
+      color: #07120a;
+
+      font-size: 18px;
+
+      font-weight: bold;
+
+      padding: 9px;
+
+      text-align: center;
+    }
+
+    /* =========================
+       CABEÇALHO DA TABELA
+    ========================= */
+
+    .cabecalho {
+
+      display: grid;
+
+      grid-template-columns:
+        55px
+        minmax(120px, 1fr)
+        85px
+        105px;
+
+      background: #e5e7eb;
+
+      color: #111827;
+
+      font-weight: bold;
+
+      font-size: 11px;
+
+      padding: 7px 5px;
+
+      text-align: center;
+    }
+
+    /* =========================
+       LINHAS
+    ========================= */
+
+    .linha {
+
+      display: grid;
+
+      grid-template-columns:
+        55px
+        minmax(120px, 1fr)
+        85px
+        105px;
+
+      min-height: 31px;
+
+      padding: 7px 5px;
+
+      border-top:
+        1px solid #334155;
+
+      font-size: 11px;
+
+      text-align: center;
+
+      align-items: center;
+    }
+
+    .linha.produzindo {
+
+      background:
+        rgba(34, 197, 94, 0.18);
+    }
+
+    .linha.programar {
+
+      background:
+        rgba(250, 204, 21, 0.18);
+    }
+
+    .linha.finalizado {
+
+      background:
+        rgba(239, 68, 68, 0.18);
+    }
+
+    .linha.parada {
+
+      background:
+        rgba(56, 189, 248, 0.18);
+    }
+
+    .status {
+
+      font-weight: bold;
+    }
+
+    .codigo {
+
+      font-weight: bold;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+    /* =========================
+       RODAPÉ
+    ========================= */
+
+    .atualizacao {
+
+      text-align: center;
+
+      color: #64748b;
+
+      font-size: 11px;
+
+      padding-bottom: 20px;
+    }
+
+    /* =========================
+       RESPONSIVO
+    ========================= */
+
+    @media (max-width: 1500px) {
+
+      .maquinas {
+
+        grid-template-columns:
+          repeat(3, minmax(280px, 1fr));
+      }
+
+    }
+
+    @media (max-width: 1000px) {
+
+      .indicadores {
+
+        grid-template-columns:
+          repeat(3, 1fr);
+      }
+
+      .maquinas {
+
+        grid-template-columns:
+          repeat(2, minmax(280px, 1fr));
+      }
+
+    }
+
+    @media (max-width: 650px) {
+
+      .indicadores {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
+      }
+
+      .maquinas {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+      header {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+      }
+
+      .data-hora {
+
+        text-align: center;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     CABEÇALHO
+========================= -->
+
+<header>
+
+  <div>
+
+    <div class="titulo">
+      🏭 PAINEL DE PRODUÇÃO
+    </div>
+
+    <div class="subtitulo">
+      Controle de Programação e Produção
+    </div>
+
+  </div>
+
+
+  <div class="data-hora">
+
+    📅 <span id="data"></span>
+
+    <br>
+
+    🕐 <span id="hora"></span>
+
+  </div>
+
+</header>
+
+
+
+<!-- =========================
+     INDICADORES
+========================= -->
+
+<section class="indicadores">
+
+
+  <div class="indicador">
+
+    <div class="indicador-titulo">
+      🟢 PEÇAS PRODUZINDO
+    </div>
+
+    <div
+      id="produzindo"
+      class="numero verde">
+
+      0
+
+    </div>
+
+  </div>
+
+
+
+  <div class="indicador">
+
+    <div class="indicador-titulo">
+      🟡 PEÇAS PROGRAMAR
+    </div>
+
+    <div
+      id="programar"
+      class="numero amarelo">
+
+      0
+
+    </div>
+
+  </div>
+
+
+
+  <div class="indicador">
+
+    <div class="indicador-titulo">
+      🔴 PEÇAS FINALIZADAS
+    </div>
+
+    <div
+      id="finalizado"
+      class="numero vermelho">
+
+      0
+
+    </div>
+
+  </div>
+
+
+
+  <div class="indicador">
+
+    <div class="indicador-titulo">
+      🏭 MÁQUINAS ATIVAS
+    </div>
+
+    <div
+      id="ativas"
+      class="numero verde">
+
+      0
+
+    </div>
+
+  </div>
+
+
+
+  <div class="indicador">
+
+    <div class="indicador-titulo">
+      🟡 MÁQUINAS PROGRAMAR
+    </div>
+
+    <div
+      id="maqProgramar"
+      class="numero amarelo">
+
+      0
+
+    </div>
+
+  </div>
+
+
+
+  <div class="indicador">
+
+    <div class="indicador-titulo">
+      🔵 MÁQUINAS PARADAS
+    </div>
+
+    <div
+      id="paradas"
+      class="numero azul">
+
+      0
+
+    </div>
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     MÁQUINAS
+========================= -->
+
+<section
+  id="maquinas"
+  class="maquinas">
+
+</section>
+
+
+
+<div
+  id="atualizacao"
+  class="atualizacao">
+
+  Carregando dados...
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   URL DA API DO GOOGLE APPS SCRIPT
+===================================================== */
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbw0JKSWHRd8sed1zn9EolPGEqAV4b8h9cC8ef_BadKxrU43Dgqx8mq543Umg6VWRF3Z_Q/exec";
+
+
+
+/* =====================================================
+   MÁQUINAS
+===================================================== */
+
+const NUMERO_MAQUINAS = 24;
+
+
+
+/* =====================================================
+   CARREGAR DADOS
+===================================================== */
+
+async function carregarDados() {
+
+  try {
+
+    const resposta =
+      await fetch(API_URL, {
+        cache: "no-store"
+      });
+
+
+    if (!resposta.ok) {
+
+      throw new Error(
+        "Erro HTTP: " + resposta.status
+      );
+
+    }
+
+
+    const dados =
+      await resposta.json();
+
+
+    console.log(
+      "Dados recebidos:",
+      dados
+    );
+
+
+    montarPainel(dados);
+
+
+    document.getElementById(
+      "atualizacao"
+    ).textContent =
+      "Última atualização: " +
+      new Date().toLocaleTimeString("pt-BR");
+
+
+  }
+
+  catch (erro) {
+
+    console.error(
+      "Erro ao carregar API:",
+      erro
+    );
+
+
+    document.getElementById(
+      "atualizacao"
+    ).textContent =
+      "Erro ao carregar os dados da produção.";
+
+  }
+
+}
+
+
+
+/* =====================================================
+   CONVERTER PERCENTUAL
+===================================================== */
+
+function formatarPercentual(valor) {
+
+  if (
+    valor === null ||
+    valor === undefined ||
+    valor === ""
+  ) {
+
+    return "-";
+
+  }
+
+
+  let numero =
+    Number(valor);
+
+
+  if (isNaN(numero)) {
+
+    return valor;
+
+  }
+
+
+  /*
+    Se vier como 0.82,
+    transforma em 82%.
+  */
+
+  if (
+    numero >= 0 &&
+    numero <= 1
+  ) {
+
+    numero =
+      numero * 100;
+
+  }
+
+
+  return (
+    numero.toFixed(0) +
+    "%"
+  );
+
+}
+
+
+
+/* =====================================================
+   CONVERTER NÚMERO
+===================================================== */
+
+function formatarNumero(valor) {
+
+  if (
+    valor === null ||
+    valor === undefined ||
+    valor === ""
+  ) {
+
+    return "0";
+
+  }
+
+
+  const numero =
+    Number(valor);
+
+
+  if (isNaN(numero)) {
+
+    return valor;
+
+  }
+
+
+  return numero.toLocaleString(
+    "pt-BR"
+  );
+
+}
+
+
+
+/* =====================================================
+   MONTAR PAINEL
+===================================================== */
+
+function montarPainel(dados) {
+
+
+  const maquinas = {};
+
+
+  /*
+    Criamos M1 até M24
+    mesmo que alguma esteja vazia.
+  */
+
+  for (
+    let i = 1;
+    i <= NUMERO_MAQUINAS;
+    i++
+  ) {
+
+    maquinas["M" + i] = [];
+
+  }
+
+
+
+  /* =================================================
+     ORGANIZAR DADOS POR MÁQUINA
+  ================================================= */
+
+  dados.forEach(item => {
+
+
+    const maquina =
+      String(
+        item["MAQUINA"] || ""
+      ).trim();
+
+
+    if (!maquina) {
+
+      return;
+
+    }
+
+
+    if (!maquinas[maquina]) {
+
+      maquinas[maquina] = [];
+
+    }
+
+
+    /*
+      Ignora linhas totalmente vazias
+    */
+
+    const codigo =
+      String(
+        item["CÓDIGO"] || ""
+      ).trim();
+
+
+    const status =
+      String(
+        item["STATUS"] || ""
+      ).trim();
+
+
+    if (
+      codigo ||
+      status
+    ) {
+
+      maquinas[maquina].push(
+        item
+      );
+
+    }
+
+  });
+
+
+
+  /* =================================================
+     CONTADORES
+  ================================================= */
+
+  let produzindo = 0;
+
+  let programar = 0;
+
+  let finalizado = 0;
+
+  let paradas = 0;
+
+
+
+  Object.values(
+    maquinas
+  ).forEach(lista => {
+
+
+    lista.forEach(item => {
+
+
+      const status =
+        String(
+          item["STATUS"] || ""
+        )
+        .trim()
+        .toUpperCase();
+
+
+      if (
+        status === "PRODUZINDO"
+      ) {
+
+        produzindo++;
+
+      }
+
+
+      if (
+        status === "PROGRAMAR"
+      ) {
+
+        programar++;
+
+      }
+
+
+      if (
+        status === "FINALIZADO" ||
+        status === "FINALIZADA"
+      ) {
+
+        finalizado++;
+
+      }
+
+
+      if (
+        status === "PARADA" ||
+        status === "PARADO"
+      ) {
+
+        paradas++;
+
+      }
+
+    });
+
+  });
+
+
+
+  /* =================================================
+     ATUALIZAR INDICADORES
+  ================================================= */
+
+  document.getElementById(
+    "produzindo"
+  ).textContent =
+    produzindo;
+
+
+  document.getElementById(
+    "programar"
+  ).textContent =
+    programar;
+
+
+  document.getElementById(
+    "finalizado"
+  ).textContent =
+    finalizado;
+
+
+
+  /* =================================================
+     MÁQUINAS ATIVAS
+  ================================================= */
+
+  let maquinasAtivas = 0;
+
+  let maquinasProgramar = 0;
+
+  let maquinasParadas = 0;
+
+
+
+  Object.keys(
+    maquinas
+  ).forEach(maquina => {
+
+
+    const lista =
+      maquinas[maquina];
+
+
+    if (
+      lista.some(item =>
+        String(
+          item["STATUS"] || ""
+        )
+        .toUpperCase()
+        === "PRODUZINDO"
+      )
+    ) {
+
+      maquinasAtivas++;
+
+    }
+
+
+    if (
+      lista.some(item =>
+        String(
+          item["STATUS"] || ""
+        )
+        .toUpperCase()
+        === "PROGRAMAR"
+      )
+    ) {
+
+      maquinasProgramar++;
+
+    }
+
+
+    if (
+      lista.some(item =>
+        [
+          "PARADA",
+          "PARADO"
+        ].includes(
+          String(
+            item["STATUS"] || ""
+          )
+          .toUpperCase()
+        )
+      )
+    ) {
+
+      maquinasParadas++;
+
+    }
+
+  });
+
+
+
+  document.getElementById(
+    "ativas"
+  ).textContent =
+    maquinasAtivas;
+
+
+  document.getElementById(
+    "maqProgramar"
+  ).textContent =
+    maquinasProgramar;
+
+
+  document.getElementById(
+    "paradas"
+  ).textContent =
+    maquinasParadas;
+
+
+
+  /* =================================================
+     CONTAINER DAS MÁQUINAS
+  ================================================= */
+
+  const container =
+    document.getElementById(
+      "maquinas"
+    );
+
+
+  container.innerHTML = "";
+
+
+
+  /* =================================================
+     ORDENAR M1, M2, M3...
+  ================================================= */
+
+  const listaMaquinas =
+    Object.keys(
+      maquinas
+    ).sort(
+      (a, b) => {
+
+        const numeroA =
+          parseInt(
+            a.replace(/\D/g, "")
+          ) || 0;
+
+
+        const numeroB =
+          parseInt(
+            b.replace(/\D/g, "")
+          ) || 0;
+
+
+        return numeroA - numeroB;
+
+      }
+    );
+
+
+
+  /* =================================================
+     CRIAR CARD DE CADA MÁQUINA
+  ================================================= */
+
+  listaMaquinas.forEach(
+    maquina => {
+
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "maquina";
+
+
+
+      let html = `
+
+        <div class="maquina-titulo">
+
+          🏭 ${maquina}
+
+        </div>
+
+
+        <div class="cabecalho">
+
+          <div>%</div>
+
+          <div>CÓDIGO</div>
+
+          <div>FALTA</div>
+
+          <div>STATUS</div>
+
+        </div>
+
+      `;
+
+
+
+      const lista =
+        maquinas[maquina];
+
+
+
+      /* =================================================
+         MÁQUINA SEM DADOS
+      ================================================= */
+
+      if (
+        lista.length === 0
+      ) {
+
+
+        for (
+          let i = 0;
+          i < 5;
+          i++
+        ) {
+
+          html += `
+
+            <div class="linha">
+
+              <div>-</div>
+
+              <div></div>
+
+              <div></div>
+
+              <div></div>
+
+            </div>
+
+          `;
+
+        }
+
+      }
+
+
+
+      /* =================================================
+         MÁQUINA COM DADOS
+      ================================================= */
+
+      lista.forEach(
+        item => {
+
+
+          const codigo =
+            item["CÓDIGO"] || "";
+
+
+          const falta =
+            item["FALTA"] ?? "";
+
+
+          const percentual =
+            formatarPercentual(
+              item["%"]
+            );
+
+
+          const status =
+            String(
+              item["STATUS"] || ""
+            )
+            .trim()
+            .toUpperCase();
+
+
+
+          let classe =
+            "";
+
+
+
+          if (
+            status === "PRODUZINDO"
+          ) {
+
+            classe =
+              "produzindo";
+
+          }
+
+
+          else if (
+            status === "PROGRAMAR"
+          ) {
+
+            classe =
+              "programar";
+
+          }
+
+
+          else if (
+            status === "FINALIZADO" ||
+            status === "FINALIZADA"
+          ) {
+
+            classe =
+              "finalizado";
+
+          }
+
+
+          else if (
+            status === "PARADA" ||
+            status === "PARADO"
+          ) {
+
+            classe =
+              "parada";
+
+          }
+
+
+
+          html += `
+
+            <div class="linha ${classe}">
+
+              <div>
+
+                ${percentual}
+
+              </div>
+
+
+              <div
+                class="codigo"
+                title="${codigo}">
+
+                ${codigo}
+
+              </div>
+
+
+              <div>
+
+                ${formatarNumero(falta)}
+
+              </div>
+
+
+              <div class="status">
+
+                ${status || "-"}
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+
+      );
+
+
+
+      card.innerHTML =
+        html;
+
+
+      container.appendChild(
+        card
+      );
+
+
+    }
+
+  );
+
+}
+
+
+
+/* =====================================================
+   DATA E HORA
+===================================================== */
+
+function atualizarDataHora() {
+
+
+  const agora =
+    new Date();
+
+
+  document.getElementById(
+    "data"
+  ).textContent =
+    agora.toLocaleDateString(
+      "pt-BR"
+    );
+
+
+  document.getElementById(
+    "hora"
+  ).textContent =
+    agora.toLocaleTimeString(
+      "pt-BR"
+    );
+
+}
+
+
+
+/* =====================================================
+   INICIAR
+===================================================== */
+
+atualizarDataHora();
+
+
+setInterval(
+  atualizarDataHora,
+  1000
+);
+
+
+carregarDados();
+
+
+/*
+  Atualiza a produção
+  automaticamente a cada 1 minuto.
+*/
+
+setInterval(
+  carregarDados,
+  60000
+);
+
+
+</script>
+
+
+</body>
+
+</html>
