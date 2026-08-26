@@ -13,16 +13,21 @@
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
       background: #06101f;
       color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
     }
 
+    /* =========================
+       CABEÇALHO
+    ========================= */
+
     .header {
-      background: #111c31;
+      background: #111c30;
       border: 1px solid #263b5c;
-      border-radius: 0 0 14px 14px;
-      padding: 18px 24px;
+      border-radius: 0 0 12px 12px;
+      padding: 20px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -30,15 +35,15 @@
     }
 
     .titulo {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: bold;
-      color: #5da2ff;
+      color: #55a2ff;
+      margin-bottom: 6px;
     }
 
     .subtitulo {
-      margin-top: 6px;
+      color: #b9c7dc;
       font-size: 13px;
-      color: #9fb0c8;
     }
 
     .info-topo {
@@ -48,211 +53,209 @@
 
     .info-box {
       min-width: 150px;
-      background: #111c31;
-      border: 1px solid #304668;
-      border-radius: 12px;
       padding: 10px 18px;
+      border: 1px solid #30476b;
+      border-radius: 12px;
       text-align: center;
+      background: #101b30;
     }
 
     .info-label {
+      color: #9fb0ca;
       font-size: 12px;
-      color: #9fb0c8;
-      text-transform: uppercase;
+      margin-bottom: 4px;
     }
 
     .info-value {
-      font-size: 23px;
-      font-weight: bold;
       color: #4d9aff;
-      margin-top: 4px;
+      font-size: 22px;
+      font-weight: bold;
     }
 
     .data-value {
-      color: #16d96b;
+      color: #12df72;
     }
 
-    .resumo {
+    /* =========================
+       INDICADORES
+    ========================= */
+
+    .indicadores {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
       padding: 18px 0;
     }
 
-    .card {
-      background: #111c31;
-      border: 1px solid #2a4164;
+    .card-indicador {
+      background: #111c30;
+      border: 1px solid #29466f;
       border-radius: 12px;
-      padding: 13px;
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
     }
 
-    .card-titulo {
+    .indicador-titulo {
       font-size: 13px;
-      color: #b9c8dc;
+      color: #d7e1ef;
+      margin-bottom: 6px;
     }
 
-    .card-numero {
-      font-size: 26px;
+    .indicador-numero {
+      font-size: 28px;
       font-weight: bold;
-      margin-top: 4px;
     }
 
     .verde {
-      color: #10d968;
+      color: #00df70;
     }
 
     .amarelo {
-      color: #ffd21c;
+      color: #ffd000;
     }
 
     .vermelho {
-      color: #ff4558;
+      color: #ff4058;
     }
 
     .azul {
-      color: #4e96ff;
+      color: #4b91ff;
     }
 
+    .laranja {
+      color: #ff9d19;
+    }
+
+    /* =========================
+       LINHAS
+    ========================= */
+
     .linha {
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     .linha-titulo {
-      background: #18263f;
-      border-top: 1px solid #2b4264;
-      border-bottom: 1px solid #2b4264;
-      padding: 10px 16px;
-      font-size: 18px;
+      background: #182640;
+      border-top: 1px solid #29466f;
+      border-bottom: 1px solid #29466f;
+      padding: 11px 14px;
+      font-size: 17px;
       font-weight: bold;
-      color: #e8eef8;
+      color: #ffffff;
+      margin-bottom: 10px;
     }
 
     .maquinas {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 10px;
-      padding: 10px 7px;
     }
 
+    /* =========================
+       MÁQUINA
+    ========================= */
+
     .maquina {
-      border: 1px solid #334c70;
+      background: #101b2e;
+      border: 1px solid #29466f;
       border-radius: 8px;
       overflow: hidden;
-      background: #101b2e;
-      min-height: 170px;
+      min-height: 195px;
     }
 
     .maquina-titulo {
-      background: #91c27b;
-      color: #08120b;
+      background: #91c47d;
+      color: #07110a;
       text-align: center;
       font-weight: bold;
-      padding: 10px 4px;
+      padding: 10px 5px;
       font-size: 15px;
     }
 
     .cabecalho-tabela {
       display: grid;
-      grid-template-columns: 45px 1fr 65px 90px;
-      background: #e5e8ed;
-      color: #111827;
-      font-size: 11px;
+      grid-template-columns: 16% 39% 22% 23%;
+      background: #e3e7ed;
+      color: #101010;
       font-weight: bold;
+      font-size: 11px;
       text-align: center;
-      padding: 5px 2px;
+      padding: 5px 0;
     }
 
     .registro {
       display: grid;
-      grid-template-columns: 45px 1fr 65px 90px;
-      min-height: 25px;
-      border-bottom: 1px solid #2e405c;
-      font-size: 11px;
+      grid-template-columns: 16% 39% 22% 23%;
+      min-height: 23px;
+      border-bottom: 1px solid #30405a;
       align-items: center;
+      text-align: center;
+      font-size: 11px;
     }
 
-    .registro > div {
-      text-align: center;
-      padding: 5px 2px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+    .registro:last-child {
+      border-bottom: none;
     }
 
     .codigo {
       font-weight: bold;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding: 0 3px;
     }
 
     .falta {
-      color: #ffd21c;
+      color: #ffd000;
       font-weight: bold;
     }
+
+    /* =========================
+       STATUS
+    ========================= */
 
     .status {
       font-weight: bold;
+      font-size: 10px;
     }
 
-    .status-produzindo {
-      color: #00dc68;
-      background: rgba(0, 180, 110, 0.16);
+    .status-PRODUZINDO {
+      color: #00df70;
     }
 
-    .status-programar {
-      color: #ffd21c;
-      background: rgba(255, 205, 0, 0.15);
+    .status-PROGRAMAR {
+      color: #ffd000;
     }
 
-    .status-finalizado {
-      color: #ff4558;
+    .status-FINALIZADO {
+      color: #ff4058;
     }
 
-    .status-parada {
-      color: #5b9cff;
-      background: rgba(50, 120, 255, 0.12);
+    .status-PARADA {
+      color: #4b91ff;
     }
 
-    .sem-dados {
-      color: #8997aa;
-      text-align: center;
-      padding: 25px 5px;
-      font-size: 12px;
-    }
+    /* =========================
+       RESPONSIVO
+    ========================= */
 
-    .carregando {
-      text-align: center;
-      padding: 35px;
-      color: #8fa5c2;
-      font-size: 15px;
-    }
+    @media (max-width: 1200px) {
 
-    .erro {
-      margin: 20px;
-      padding: 20px;
-      background: #351923;
-      border: 1px solid #a43852;
-      border-radius: 10px;
-      color: #ff9daf;
-    }
-
-    .rodape {
-      text-align: center;
-      color: #71829b;
-      font-size: 11px;
-      padding: 12px;
-    }
-
-    @media (max-width: 1100px) {
-      .maquinas {
+      .indicadores {
         grid-template-columns: repeat(3, 1fr);
       }
 
-      .resumo {
-        grid-template-columns: repeat(2, 1fr);
+      .maquinas {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 800px) {
+
       .header {
         flex-direction: column;
         align-items: flex-start;
@@ -266,18 +269,37 @@
         flex: 1;
       }
 
+      .indicadores {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       .maquinas {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .titulo {
+        font-size: 22px;
+      }
+
+      .indicadores {
         grid-template-columns: 1fr;
       }
 
-      .resumo {
-        grid-template-columns: 1fr 1fr;
+      .maquinas {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- =========================
+       CABEÇALHO
+  ========================== -->
 
   <div class="header">
 
@@ -294,16 +316,22 @@
     <div class="info-topo">
 
       <div class="info-box">
-        <div class="info-label">Total Produzido</div>
+        <div class="info-label">
+          TOTAL PRODUZIDO
+        </div>
+
         <div class="info-value" id="totalProduzido">
           0
         </div>
       </div>
 
       <div class="info-box">
-        <div class="info-label">Data</div>
+        <div class="info-label">
+          DATA
+        </div>
+
         <div class="info-value data-value" id="dataAtual">
-          --
+          -
         </div>
       </div>
 
@@ -312,755 +340,767 @@
   </div>
 
 
-  <div class="resumo">
+  <!-- =========================
+       INDICADORES
+  ========================== -->
 
-    <div class="card">
-      <div class="card-titulo">🟢 PRODUZINDO</div>
-      <div class="card-numero verde" id="qtdProduzindo">0</div>
+  <div class="indicadores">
+
+    <!-- PEÇAS PRODUZINDO -->
+    <div class="card-indicador">
+      <div class="indicador-titulo">
+        🟢 PEÇAS PRODUZINDO
+      </div>
+
+      <div
+        class="indicador-numero verde"
+        id="pecasProduzindo">
+        0
+      </div>
     </div>
 
-    <div class="card">
-      <div class="card-titulo">🟡 PROGRAMAR</div>
-      <div class="card-numero amarelo" id="qtdProgramar">0</div>
+
+    <!-- PEÇAS A PROGRAMAR -->
+    <div class="card-indicador">
+      <div class="indicador-titulo">
+        🟡 PEÇAS A PROGRAMAR
+      </div>
+
+      <div
+        class="indicador-numero amarelo"
+        id="pecasProgramar">
+        0
+      </div>
     </div>
 
-    <div class="card">
-      <div class="card-titulo">🔴 FINALIZADO</div>
-      <div class="card-numero vermelho" id="qtdFinalizado">0</div>
+
+    <!-- PEÇAS FINALIZADAS -->
+    <div class="card-indicador">
+      <div class="indicador-titulo">
+        🔴 PEÇAS FINALIZADAS
+      </div>
+
+      <div
+        class="indicador-numero vermelho"
+        id="pecasFinalizadas">
+        0
+      </div>
     </div>
 
-    <div class="card">
-      <div class="card-titulo">🔵 PARADA</div>
-      <div class="card-numero azul" id="qtdParada">0</div>
+
+    <!-- MÁQUINAS ATIVAS -->
+    <div class="card-indicador">
+      <div class="indicador-titulo">
+        🔵 MÁQUINAS ATIVAS
+      </div>
+
+      <div
+        class="indicador-numero azul"
+        id="maquinasAtivas">
+        0
+      </div>
+    </div>
+
+
+    <!-- MÁQUINAS PARADAS -->
+    <div class="card-indicador">
+      <div class="indicador-titulo">
+        ⛔ MÁQUINAS PARADAS
+      </div>
+
+      <div
+        class="indicador-numero azul"
+        id="maquinasParadas">
+        0
+      </div>
+    </div>
+
+
+    <!-- MÁQUINAS A PROGRAMAR -->
+    <div class="card-indicador">
+      <div class="indicador-titulo">
+        🟠 MÁQUINAS A PROGRAMAR
+      </div>
+
+      <div
+        class="indicador-numero laranja"
+        id="maquinasProgramar">
+        0
+      </div>
     </div>
 
   </div>
 
+
+  <!-- =========================
+       PAINEL
+  ========================== -->
 
   <div id="painel">
-
-    <div class="carregando">
-      Carregando dados da produção...
-    </div>
-
+    Carregando dados da produção...
   </div>
 
 
-  <div class="rodape">
-    Última atualização: <span id="ultimaAtualizacao">--</span>
-  </div>
+  <script>
 
+    /* =====================================================
+       ENDEREÇO DA API
+    ===================================================== */
 
-<script>
-
-  /* =====================================================
-     URL DA SUA API GOOGLE APPS SCRIPT
-     ===================================================== */
-
-  const API_URL =
-    "https://script.google.com/macros/s/AKfycbyWIWNnhcEOd2FXAetR0meo7juZzfMbWrd35VNlEOHIrnZYO3clXtfD7xz2cysq1FWJhQ/exec";
-
-
-  /* =====================================================
-     INICIALIZAÇÃO
-     ===================================================== */
-
-  carregarDados();
-
-
-  /* Atualiza automaticamente a cada 1 minuto */
-
-  setInterval(carregarDados, 60000);
-
-
-  /* =====================================================
-     BUSCAR DADOS
-     ===================================================== */
-
-  async function carregarDados() {
-
-    try {
-
-      const resposta = await fetch(API_URL + "?t=" + Date.now());
-
-      if (!resposta.ok) {
-        throw new Error(
-          "Erro HTTP: " + resposta.status
-        );
-      }
-
-      const dados = await resposta.json();
-
-      console.log("Dados recebidos:", dados);
-
-      processarDados(dados);
-
-    }
-
-    catch (erro) {
-
-      console.error("Erro ao carregar API:", erro);
-
-      document.getElementById("painel").innerHTML = `
-        <div class="erro">
-          <strong>⚠️ Não foi possível carregar os dados.</strong>
-          <br><br>
-          Verifique a conexão com o Google Apps Script.
-          <br><br>
-          <small>${erro.message}</small>
-        </div>
-      `;
-
-    }
-
-  }
-
-
-  /* =====================================================
-     PROCESSAR DADOS
-     ===================================================== */
-
-  function processarDados(dados) {
-
-    if (!Array.isArray(dados)) {
-
-      if (dados && Array.isArray(dados.dados)) {
-        dados = dados.dados;
-      }
-
-      else if (dados && Array.isArray(dados.data)) {
-        dados = dados.data;
-      }
-
-      else {
-        console.error("Formato recebido:", dados);
-
-        throw new Error(
-          "A API não retornou uma lista de dados."
-        );
-      }
-
-    }
-
-
-    if (dados.length === 0) {
-
-      document.getElementById("painel").innerHTML = `
-        <div class="carregando">
-          Nenhum dado encontrado.
-        </div>
-      `;
-
-      return;
-    }
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbyWIWNnhcEOd2FXAetR0meo7juZzfMbWrd35VNlEOHIrnZYO3clXtfD7xz2cysq1FWJhQ/exec";
 
 
     /* =====================================================
-       DESCOBRIR NOMES DAS COLUNAS
-       ===================================================== */
+       FORMATA NÚMEROS
+    ===================================================== */
 
-    const primeiro = dados[0];
-
-    console.log(
-      "Primeiro registro:",
-      primeiro
-    );
-
-
-    /* =====================================================
-       NORMALIZAR DADOS
-       ===================================================== */
-
-    const registros = dados.map(item => {
-
-      return {
-
-        linha:
-          pegar(item,
-            "LINHA",
-            "Linha",
-            "linha"
-          ),
-
-        maquina:
-          pegar(item,
-            "MAQUINA",
-            "MÁQUINA",
-            "Maquina",
-            "Máquina",
-            "maquina"
-          ),
-
-        codigo:
-          pegar(item,
-            "CODIGO",
-            "CÓDIGO",
-            "Codigo",
-            "Código",
-            "codigo"
-          ),
-
-        descricao:
-          pegar(item,
-            "DESCRICAO",
-            "DESCRIÇÃO",
-            "Descricao",
-            "Descrição",
-            "descricao"
-          ),
-
-        termino:
-          pegar(item,
-            "TERMINO",
-            "TÉRMINO",
-            "Termino",
-            "Término",
-            "termino"
-          ),
-
-        produzido:
-          numero(
-            pegar(item,
-              "PRODUZIDO",
-              "Produzido",
-              "produzido"
-            )
-          ),
-
-        falta:
-          numero(
-            pegar(item,
-              "FALTA",
-              "Falta",
-              "falta"
-            )
-          ),
-
-        status:
-          pegar(item,
-            "STATUS",
-            "Status",
-            "status"
-          ),
-
-        percentual:
-          pegar(item,
-            "%",
-            "PERCENTUAL",
-            "Percentual",
-            "percentual"
-          )
-
-      };
-
-    });
-
-
-    montarPainel(registros);
-
-  }
-
-
-  /* =====================================================
-     PEGAR VALOR DE UMA COLUNA
-     ===================================================== */
-
-  function pegar(obj, ...nomes) {
-
-    for (const nome of nomes) {
+    function numero(valor) {
 
       if (
-        obj &&
-        Object.prototype.hasOwnProperty.call(obj, nome)
+        valor === null ||
+        valor === undefined ||
+        valor === ""
       ) {
-
-        return obj[nome];
-
+        return 0;
       }
 
+      const numero = Number(
+        String(valor)
+          .replace(/\./g, "")
+          .replace(",", ".")
+      );
+
+      return isNaN(numero) ? 0 : numero;
     }
-
-    return "";
-
-  }
-
-
-  /* =====================================================
-     CONVERTER PARA NÚMERO
-     ===================================================== */
-
-  function numero(valor) {
-
-    if (
-      valor === null ||
-      valor === undefined ||
-      valor === ""
-    ) {
-      return 0;
-    }
-
-    if (typeof valor === "number") {
-      return valor;
-    }
-
-    let texto =
-      String(valor)
-        .replace(/\./g, "")
-        .replace(",", ".");
-
-    const n = Number(texto);
-
-    return isNaN(n) ? 0 : n;
-
-  }
-
-
-  /* =====================================================
-     MONTAR PAINEL
-     ===================================================== */
-
-  function montarPainel(registros) {
-
-    const painel =
-      document.getElementById("painel");
-
-    painel.innerHTML = "";
 
 
     /* =====================================================
-       RESUMO
-       ===================================================== */
+       FORMATA DATA
+    ===================================================== */
 
-    let produzindo = 0;
-    let programar = 0;
-    let finalizado = 0;
-    let parada = 0;
+    function formatarData(data) {
 
-    let totalProduzido = 0;
+      const agora = new Date();
+
+      const dia = String(
+        agora.getDate()
+      ).padStart(2, "0");
+
+      const mes = String(
+        agora.getMonth() + 1
+      ).padStart(2, "0");
+
+      const ano = agora.getFullYear();
+
+      return `${dia}/${mes}/${ano}`;
+    }
 
 
-    registros.forEach(r => {
+    /* =====================================================
+       NORMALIZA STATUS
+    ===================================================== */
 
-      const status =
-        String(r.status || "")
-          .trim()
-          .toUpperCase();
+    function normalizarStatus(status) {
 
-      totalProduzido += r.produzido;
-
-
-      if (status === "PRODUZINDO") {
-        produzindo++;
-      }
-
-      else if (status === "PROGRAMAR") {
-        programar++;
-      }
-
-      else if (status === "FINALIZADO") {
-        finalizado++;
-      }
-
-      else if (
-        status === "PARADA" ||
-        status === "PARADO"
+      if (
+        status === null ||
+        status === undefined
       ) {
-        parada++;
+        return "";
       }
 
-    });
-
-
-    document.getElementById(
-      "qtdProduzindo"
-    ).textContent = produzindo;
-
-
-    document.getElementById(
-      "qtdProgramar"
-    ).textContent = programar;
-
-
-    document.getElementById(
-      "qtdFinalizado"
-    ).textContent = finalizado;
-
-
-    document.getElementById(
-      "qtdParada"
-    ).textContent = parada;
-
-
-    document.getElementById(
-      "totalProduzido"
-    ).textContent =
-      formatarNumero(totalProduzido);
-
-
-    document.getElementById(
-      "dataAtual"
-    ).textContent =
-      new Date().toLocaleDateString(
-        "pt-BR"
-      );
-
-
-    document.getElementById(
-      "ultimaAtualizacao"
-    ).textContent =
-      new Date().toLocaleTimeString(
-        "pt-BR"
-      );
+      return String(status)
+        .trim()
+        .toUpperCase();
+    }
 
 
     /* =====================================================
-       AGRUPAR POR LINHA E MÁQUINA
-       ===================================================== */
+       ATUALIZA INDICADORES
+    ===================================================== */
 
-    const linhas = {};
+    function atualizarIndicadores(dados) {
 
+      let pecasProduzindo = 0;
+      let pecasProgramar = 0;
+      let pecasFinalizadas = 0;
 
-    registros.forEach(r => {
-
-      const linha =
-        r.linha || "LINHA 1";
-
-      const maquina =
-        r.maquina || "SEM MÁQUINA";
-
-
-      if (!linhas[linha]) {
-        linhas[linha] = {};
-      }
+      let maquinasProduzindo = new Set();
+      let maquinasParadas = new Set();
+      let maquinasProgramar = new Set();
 
 
-      if (!linhas[linha][maquina]) {
-        linhas[linha][maquina] = [];
-      }
+      dados.forEach(item => {
+
+        const status =
+          normalizarStatus(item.STATUS);
+
+        const maquina =
+          String(item.MAQUINA || "").trim();
 
 
-      linhas[linha][maquina].push(r);
+        /* =========================
+           PEÇAS
+        ========================= */
 
-    });
+        if (status === "PRODUZINDO") {
+          pecasProduzindo++;
+        }
 
+        if (status === "PROGRAMAR") {
+          pecasProgramar++;
+        }
 
-    /* =====================================================
-       ORDENAR LINHAS
-       ===================================================== */
-
-    const nomesLinhas =
-      Object.keys(linhas).sort(
-        compararNumeros
-      );
-
-
-    /* =====================================================
-       CRIAR LINHAS
-       ===================================================== */
-
-    nomesLinhas.forEach(nomeLinha => {
-
-      const blocoLinha =
-        document.createElement("div");
-
-      blocoLinha.className = "linha";
+        if (status === "FINALIZADO") {
+          pecasFinalizadas++;
+        }
 
 
-      blocoLinha.innerHTML = `
-        <div class="linha-titulo">
-          🏭 ${nomeLinha}
-        </div>
-      `;
+        /* =========================
+           MÁQUINAS
+        ========================= */
 
+        if (maquina !== "") {
 
-      const maquinas =
-        document.createElement("div");
+          if (status === "PRODUZINDO") {
+            maquinasProduzindo.add(maquina);
+          }
 
-      maquinas.className = "maquinas";
+          if (status === "PARADA") {
+            maquinasParadas.add(maquina);
+          }
 
+          if (status === "PROGRAMAR") {
+            maquinasProgramar.add(maquina);
+          }
 
-      const nomesMaquinas =
-        Object.keys(
-          linhas[nomeLinha]
-        ).sort(compararNumeros);
-
-
-      nomesMaquinas.forEach(nomeMaquina => {
-
-        maquinas.appendChild(
-
-          criarMaquina(
-            nomeMaquina,
-            linhas[nomeLinha][nomeMaquina]
-          )
-
-        );
+        }
 
       });
 
 
-      blocoLinha.appendChild(maquinas);
+      /* =================================================
+         MÁQUINAS ATIVAS
 
-      painel.appendChild(blocoLinha);
+         Uma máquina é considerada ativa se tiver
+         pelo menos uma peça PRODUZINDO.
+      ================================================= */
 
-    });
-
-  }
-
-
-  /* =====================================================
-     CRIAR CARD DA MÁQUINA
-     ===================================================== */
-
-  function criarMaquina(
-    nomeMaquina,
-    registros
-  ) {
-
-    const maquina =
-      document.createElement("div");
-
-    maquina.className = "maquina";
+      document.getElementById(
+        "maquinasAtivas"
+      ).textContent =
+        maquinasProduzindo.size;
 
 
-    let html = `
-
-      <div class="maquina-titulo">
-        🏭 ${nomeMaquina}
-      </div>
-
-      <div class="cabecalho-tabela">
-        <div>%</div>
-        <div>CÓDIGO</div>
-        <div>FALTA</div>
-        <div>STATUS</div>
-      </div>
-
-    `;
+      document.getElementById(
+        "maquinasParadas"
+      ).textContent =
+        maquinasParadas.size;
 
 
-    if (
-      !registros ||
-      registros.length === 0
-    ) {
+      document.getElementById(
+        "maquinasProgramar"
+      ).textContent =
+        maquinasProgramar.size;
 
-      html += `
-        <div class="sem-dados">
-          Sem programação
-        </div>
-      `;
+
+      document.getElementById(
+        "pecasProduzindo"
+      ).textContent =
+        pecasProduzindo;
+
+
+      document.getElementById(
+        "pecasProgramar"
+      ).textContent =
+        pecasProgramar;
+
+
+      document.getElementById(
+        "pecasFinalizadas"
+      ).textContent =
+        pecasFinalizadas;
 
     }
 
 
-    else {
+    /* =====================================================
+       TOTAL PRODUZIDO
+    ===================================================== */
 
-      registros.forEach(r => {
+    function calcularTotalProduzido(dados) {
 
-        const status =
-          String(r.status || "")
-            .trim()
-            .toUpperCase();
+      let total = 0;
 
+      dados.forEach(item => {
 
-        let classeStatus = "";
+        total += numero(
+          item.PRODUZIDO
+        );
 
+      });
 
-        if (
-          status === "PRODUZINDO"
-        ) {
-          classeStatus =
-            "status-produzindo";
-        }
+      document.getElementById(
+        "totalProduzido"
+      ).textContent =
+        total.toLocaleString(
+          "pt-BR",
+          {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          }
+        );
 
-        else if (
-          status === "PROGRAMAR"
-        ) {
-          classeStatus =
-            "status-programar";
-        }
-
-        else if (
-          status === "FINALIZADO"
-        ) {
-          classeStatus =
-            "status-finalizado";
-        }
-
-        else if (
-          status === "PARADA" ||
-          status === "PARADO"
-        ) {
-          classeStatus =
-            "status-parada";
-        }
+    }
 
 
-        html += `
+    /* =====================================================
+       CRIA UMA MÁQUINA
+    ===================================================== */
 
-          <div class="registro">
+    function criarMaquina(
+      maquina,
+      registros
+    ) {
+
+      const div =
+        document.createElement("div");
+
+      div.className = "maquina";
+
+
+      /* CABEÇALHO DA MÁQUINA */
+
+      const titulo =
+        document.createElement("div");
+
+      titulo.className =
+        "maquina-titulo";
+
+      titulo.textContent =
+        "🏭 " + maquina;
+
+      div.appendChild(titulo);
+
+
+      /* CABEÇALHO DA TABELA */
+
+      const cabecalho =
+        document.createElement("div");
+
+      cabecalho.className =
+        "cabecalho-tabela";
+
+      cabecalho.innerHTML = `
+        <div>%</div>
+        <div>CÓDIGO</div>
+        <div>FALTA</div>
+        <div>STATUS</div>
+      `;
+
+      div.appendChild(cabecalho);
+
+
+      /* LINHAS */
+
+      const quantidadeLinhas = 5;
+
+
+      for (
+        let i = 0;
+        i < quantidadeLinhas;
+        i++
+      ) {
+
+        const item =
+          registros[i];
+
+
+        const linha =
+          document.createElement("div");
+
+        linha.className =
+          "registro";
+
+
+        if (item) {
+
+          const percentual =
+            item["%"] ??
+            item.PERCENTUAL ??
+            item.PORCENTAGEM ??
+            "-";
+
+
+          const codigo =
+            item.CODIGO ??
+            "-";
+
+
+          const falta =
+            item.FALTA ??
+            0;
+
+
+          const status =
+            normalizarStatus(
+              item.STATUS
+            );
+
+
+          linha.innerHTML = `
 
             <div>
-              ${formatarPercentual(
-                r.percentual
-              )}
+              ${percentual}
             </div>
 
-            <div class="codigo"
-                 title="${escapeHtml(
-                   r.descricao || ""
-                 )}">
-              ${escapeHtml(
-                r.codigo || "-"
-              )}
+            <div
+              class="codigo"
+              title="${codigo}">
+              ${codigo}
             </div>
 
             <div class="falta">
-              ${formatarNumero(
-                r.falta
-              )}
+              ${falta}
             </div>
 
-            <div class="status ${classeStatus}">
-              ${escapeHtml(
-                r.status || "-"
-              )}
+            <div
+              class="status status-${status}">
+              ${status || "-"}
             </div>
+
+          `;
+
+        } else {
+
+          linha.innerHTML = `
+
+            <div>-</div>
+
+            <div>-</div>
+
+            <div class="falta">
+              0
+            </div>
+
+            <div>-</div>
+
+          `;
+
+        }
+
+
+        div.appendChild(linha);
+
+      }
+
+
+      return div;
+
+    }
+
+
+    /* =====================================================
+       MONTA O PAINEL
+    ===================================================== */
+
+    function montarPainel(dados) {
+
+      const painel =
+        document.getElementById(
+          "painel"
+        );
+
+
+      painel.innerHTML = "";
+
+
+      /* =================================================
+         AGRUPA POR LINHA
+      ================================================= */
+
+      const linhas = {};
+
+
+      dados.forEach(item => {
+
+        let linha =
+          item.LINHA ||
+          item.Linha ||
+          item.LINHA_PRODUCAO ||
+          "";
+
+
+        linha =
+          String(linha).trim();
+
+
+        if (!linha) {
+          linha = "SEM LINHA";
+        }
+
+
+        if (!linhas[linha]) {
+          linhas[linha] = {};
+        }
+
+
+        const maquina =
+          String(
+            item.MAQUINA || ""
+          ).trim();
+
+
+        if (!maquina) {
+          return;
+        }
+
+
+        if (!linhas[linha][maquina]) {
+          linhas[linha][maquina] = [];
+        }
+
+
+        linhas[linha][maquina].push(item);
+
+      });
+
+
+      /* =================================================
+         ORDENA AS LINHAS
+      ================================================= */
+
+      const nomesLinhas =
+        Object.keys(linhas)
+          .sort((a, b) =>
+            a.localeCompare(
+              b,
+              "pt-BR",
+              {
+                numeric: true
+              }
+            )
+          );
+
+
+      nomesLinhas.forEach(
+        nomeLinha => {
+
+          const blocoLinha =
+            document.createElement(
+              "div"
+            );
+
+          blocoLinha.className =
+            "linha";
+
+
+          const tituloLinha =
+            document.createElement(
+              "div"
+            );
+
+          tituloLinha.className =
+            "linha-titulo";
+
+          tituloLinha.textContent =
+            "🏭 " + nomeLinha;
+
+
+          blocoLinha.appendChild(
+            tituloLinha
+          );
+
+
+          const maquinas =
+            document.createElement(
+              "div"
+            );
+
+          maquinas.className =
+            "maquinas";
+
+
+          const nomesMaquinas =
+            Object.keys(
+              linhas[nomeLinha]
+            ).sort(
+              (a, b) => {
+
+                const numA =
+                  parseInt(
+                    a.replace(/\D/g, "")
+                  ) || 0;
+
+                const numB =
+                  parseInt(
+                    b.replace(/\D/g, "")
+                  ) || 0;
+
+                return numA - numB;
+
+              }
+            );
+
+
+          nomesMaquinas.forEach(
+            nomeMaquina => {
+
+              const maquina =
+                criarMaquina(
+                  nomeMaquina,
+                  linhas[
+                    nomeLinha
+                  ][
+                    nomeMaquina
+                  ]
+                );
+
+
+              maquinas.appendChild(
+                maquina
+              );
+
+            }
+          );
+
+
+          blocoLinha.appendChild(
+            maquinas
+          );
+
+
+          painel.appendChild(
+            blocoLinha
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       BUSCA DADOS
+    ===================================================== */
+
+    async function carregarDados() {
+
+      try {
+
+        const resposta =
+          await fetch(
+            API_URL + "?t=" +
+            Date.now()
+          );
+
+
+        if (!resposta.ok) {
+          throw new Error(
+            "Erro HTTP: " +
+            resposta.status
+          );
+        }
+
+
+        const dados =
+          await resposta.json();
+
+
+        if (!Array.isArray(dados)) {
+
+          throw new Error(
+            "A API não retornou uma lista."
+          );
+
+        }
+
+
+        /* ATUALIZA DATA */
+
+        document.getElementById(
+          "dataAtual"
+        ).textContent =
+          formatarData();
+
+
+        /* INDICADORES */
+
+        atualizarIndicadores(
+          dados
+        );
+
+
+        /* TOTAL PRODUZIDO */
+
+        calcularTotalProduzido(
+          dados
+        );
+
+
+        /* PAINEL */
+
+        montarPainel(
+          dados
+        );
+
+
+      } catch (erro) {
+
+        console.error(
+          erro
+        );
+
+
+        document.getElementById(
+          "painel"
+        ).innerHTML = `
+
+          <div style="
+            padding:30px;
+            text-align:center;
+            color:#ff4058;
+            background:#111c30;
+            border:1px solid #29466f;
+            border-radius:10px;
+          ">
+
+            ⚠️ Não foi possível
+            carregar os dados da produção.
+
+            <br><br>
+
+            Verifique a conexão
+            com a API.
 
           </div>
 
         `;
 
-      });
-
-    }
-
-
-    maquina.innerHTML = html;
-
-
-    return maquina;
-
-  }
-
-
-  /* =====================================================
-     FORMATAR PERCENTUAL
-     ===================================================== */
-
-  function formatarPercentual(valor) {
-
-    if (
-      valor === null ||
-      valor === undefined ||
-      valor === ""
-    ) {
-      return "-";
-    }
-
-
-    if (
-      typeof valor === "string" &&
-      valor.includes("%")
-    ) {
-
-      return valor;
-
-    }
-
-
-    const n =
-      Number(
-        String(valor)
-          .replace(",", ".")
-      );
-
-
-    if (isNaN(n)) {
-      return "-";
-    }
-
-
-    if (n <= 1) {
-      return Math.round(n * 100) + "%";
-    }
-
-
-    return Math.round(n) + "%";
-
-  }
-
-
-  /* =====================================================
-     FORMATAR NÚMERO
-     ===================================================== */
-
-  function formatarNumero(valor) {
-
-    if (
-      valor === null ||
-      valor === undefined ||
-      valor === ""
-    ) {
-      return "0";
-    }
-
-
-    const n = Number(valor);
-
-
-    if (isNaN(n)) {
-      return String(valor);
-    }
-
-
-    return n.toLocaleString(
-      "pt-BR",
-      {
-        maximumFractionDigits: 2
       }
+
+    }
+
+
+    /* =====================================================
+       INICIA
+    ===================================================== */
+
+    carregarDados();
+
+
+    /* =====================================================
+       ATUALIZA AUTOMATICAMENTE
+       A CADA 1 MINUTO
+    ===================================================== */
+
+    setInterval(
+      carregarDados,
+      60000
     );
 
-  }
-
-
-  /* =====================================================
-     ESCAPAR HTML
-     ===================================================== */
-
-  function escapeHtml(valor) {
-
-    return String(valor)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
-  }
-
-
-  /* =====================================================
-     ORDENAR LINHAS/MÁQUINAS
-     ===================================================== */
-
-  function compararNumeros(a, b) {
-
-    const na =
-      parseInt(
-        String(a).match(/\d+/)?.[0] || "999"
-      );
-
-    const nb =
-      parseInt(
-        String(b).match(/\d+/)?.[0] || "999"
-      );
-
-    return na - nb;
-
-  }
-
-</script>
+  </script>
 
 </body>
 </html>
