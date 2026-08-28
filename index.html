@@ -263,6 +263,64 @@ body {
    LINHAS
 ===================================================== */
 
+.filtro-linhas {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin-left: auto;
+
+  margin-right: 8px;
+
+}
+
+
+.botao-linha {
+
+  background: #14233d;
+
+  color: #9ec5f5;
+
+  border: 1px solid #294a73;
+
+  border-radius: 5px;
+
+  padding: 5px 8px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+}
+
+
+.botao-linha:hover {
+
+  background: #1d3558;
+
+  color: #ffffff;
+
+}
+
+
+.botao-linha.ativo {
+
+  background: #294a73;
+
+  color: #ffffff;
+
+  border-color: #55a2ff;
+
+}
+
+
 .linha {
 
   margin-bottom: 10px;
@@ -659,7 +717,8 @@ body {
 
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
 
   gap: 5px;
 
@@ -705,7 +764,7 @@ body {
 
 .info-falta {
 
-  color: #ff3548;
+  color: #55a2ff;
 
 }
 
@@ -713,6 +772,32 @@ body {
 .info-produzido {
 
   color: #ffffff;
+
+}
+
+
+.info-lixo {
+
+  color: #ff3548;
+
+}
+
+
+.info-percentual-lixo {
+
+  color: #55e878;
+
+}
+
+.info-percentual-lixo.alerta {
+
+  color: #ffd000;
+
+}
+
+.info-percentual-lixo.critico {
+
+  color: #ff3548;
 
 }
 
@@ -813,6 +898,16 @@ body {
 
   }
 
+  .filtro-linhas {
+
+    margin-left: 0;
+
+    margin-right: 0;
+
+    flex-wrap: wrap;
+
+  }
+
   .indicadores {
 
     width: 100%;
@@ -894,6 +989,38 @@ body {
 }
 
 
+
+/* =====================================================
+   FAIXA DA MÁQUINA POR STATUS
+===================================================== */
+
+.maquina.produzindo .maquina-titulo {
+
+  background: rgba(0, 230, 118, 0.10);
+
+  color: #00e676;
+
+}
+
+
+.maquina.programar .maquina-titulo {
+
+  background: rgba(255, 208, 0, 0.10);
+
+  color: #ffd000;
+
+}
+
+
+.maquina.parada .maquina-titulo {
+
+  background: rgba(255, 53, 72, 0.10);
+
+  color: #ff3548;
+
+}
+
+
 </style>
 
 </head>
@@ -920,6 +1047,25 @@ body {
       <span>•</span>
       Atualização automática a cada 1 minuto
     </div>
+
+  </div>
+
+
+  <!-- FILTRO DE LINHAS -->
+
+  <div class="filtro-linhas">
+
+    <button class="botao-linha ativo" id="btnTodas"
+      onclick="selecionarLinha('TODAS')">TODAS</button>
+
+    <button class="botao-linha" id="btnLinha1"
+      onclick="selecionarLinha('LINHA 1')">LINHA 1</button>
+
+    <button class="botao-linha" id="btnLinha2"
+      onclick="selecionarLinha('LINHA 2')">LINHA 2</button>
+
+    <button class="botao-linha" id="btnLinha3"
+      onclick="selecionarLinha('LINHA 3')">LINHA 3</button>
 
   </div>
 
@@ -1048,6 +1194,93 @@ body {
 
 let dadosProducao = [];
 
+let linhaSelecionada = "TODAS";
+
+
+
+/* =====================================================
+   FILTRO POR LINHA
+===================================================== */
+
+function selecionarLinha(linha) {
+
+  linhaSelecionada =
+    String(linha)
+      .trim()
+      .toUpperCase();
+
+
+  document
+    .querySelectorAll(".botao-linha")
+    .forEach(function(botao) {
+
+      botao.classList.remove("ativo");
+
+    });
+
+
+  const ids = {
+
+    "TODAS": "btnTodas",
+
+    "LINHA 1": "btnLinha1",
+
+    "LINHA 2": "btnLinha2",
+
+    "LINHA 3": "btnLinha3"
+
+  };
+
+
+  const botao =
+    document.getElementById(
+      ids[linhaSelecionada]
+    );
+
+
+  if (botao) {
+
+    botao.classList.add("ativo");
+
+  }
+
+
+  renderizarPainel(
+    filtrarDadosPorLinha(
+      dadosProducao
+    )
+  );
+
+}
+
+
+function filtrarDadosPorLinha(
+  dados
+) {
+
+  if (
+    linhaSelecionada === "TODAS"
+  ) {
+
+    return dados;
+
+  }
+
+
+  return dados.filter(
+    function(item) {
+
+      return (
+        obterLinha(item)
+          .trim()
+          .toUpperCase() ===
+        linhaSelecionada
+      );
+
+    }
+  );
+
+}
 
 
 /* =====================================================
@@ -1350,6 +1583,36 @@ function obterCodigo(item) {
 
 
 /* =====================================================
+   PERCENTUAL DE LIXO
+   VEM DIRETAMENTE DA COLUNA X
+===================================================== */
+
+function obterPercentualLixo(item) {
+
+  const produzido =
+    numero(item.PRODUZIDO);
+
+  const lixo =
+    numero(
+      item["QTD LIXO"] ??
+      item["QTD_LIXO"] ??
+      item.LIXO ??
+      0
+    );
+
+  const total =
+    produzido + lixo;
+
+  if (total <= 0) {
+    return 0;
+  }
+
+  return (lixo / total) * 100;
+
+}
+
+
+/* =====================================================
    CRIAR PEÇA
 ===================================================== */
 
@@ -1392,6 +1655,42 @@ function criarPeca(item) {
     numero(
       item.FALTA
     );
+
+
+  const lixo =
+    numero(
+      item["QTD LIXO"] ??
+      item["QTD_LIXO"] ??
+      item.LIXO ??
+      0
+    );
+
+
+  const percentualLixo =
+    obterPercentualLixo(
+      item
+    );
+
+
+  let classePercentualLixo =
+    "info-percentual-lixo";
+
+
+  if (
+    percentualLixo > 10
+  ) {
+
+    classePercentualLixo +=
+      " critico";
+
+  } else if (
+    percentualLixo > 5
+  ) {
+
+    classePercentualLixo +=
+      " alerta";
+
+  }
 
 
   const barra =
@@ -1494,6 +1793,36 @@ function criarPeca(item) {
           class="info-valor info-falta"
         >
           ${falta.toLocaleString("pt-BR")}
+        </div>
+
+      </div>
+
+
+      <div class="info">
+
+        <div class="info-label">
+          LIXO
+        </div>
+
+        <div
+          class="info-valor info-lixo"
+        >
+          ${lixo.toLocaleString("pt-BR")}
+        </div>
+
+      </div>
+
+
+      <div class="info">
+
+        <div class="info-label">
+          % LIXO
+        </div>
+
+        <div
+          class="info-valor ${classePercentualLixo}"
+        >
+          ${percentualLixo.toFixed(0)}%
         </div>
 
       </div>
@@ -2093,8 +2422,50 @@ function atualizarIndicadores(
           );
 
 
+        /*
+          MÁQUINA ATIVA:
+          PRODUZINDO + PROGRAMAR.
+
+          PM não entra na contagem.
+          Como aqui estamos dentro do agrupamento
+          da máquina, verificamos os registros dela.
+        */
+
+        const maquinaPM =
+          registros.some(
+            function(registro) {
+
+              const statusPM =
+                String(
+                  registro.STATUS || ""
+                )
+                .trim()
+                .toUpperCase()
+                .replace(/[^A-Z0-9]/g, "");
+
+              return statusPM === "PM";
+
+            }
+          ) ||
+          String(nome)
+            .trim()
+            .toUpperCase()
+            .replace(/[^A-Z0-9]/g, "") === "PM";
+
+
+        /*
+          ATIVA = toda máquina que NÃO esteja parada
+          e que NÃO seja PM.
+
+          Assim:
+          PRODUZINDO + PROGRAMAR + SETUP = ATIVA
+          PARADA = não ativa
+          PM = não entra na contagem
+        */
+
         if (
-          classe === "produzindo"
+          !maquinaPM &&
+          classe !== "parada"
         ) {
 
           ativas++;
@@ -2253,7 +2624,9 @@ function carregarDados() {
 
 
           renderizarPainel(
-            dados
+            filtrarDadosPorLinha(
+              dadosProducao
+            )
           );
 
 
