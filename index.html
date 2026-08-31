@@ -610,6 +610,12 @@ body {
 
 }
 
+.status-FINALIZADO {
+
+  color: #ff3548;
+
+}
+
 
 /* =====================================================
    PROGRESSO
@@ -799,6 +805,29 @@ body {
 
   color: #ff3548;
 
+}
+
+
+/* =====================================================
+   DIAS DE PRODUÇÃO
+===================================================== */
+
+.status-linha {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.dias-producao {
+  color: #8fa8c7;
+  font-size: 9px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dias-producao-numero {
+  color: #8fa8c7;
 }
 
 
@@ -1020,6 +1049,180 @@ body {
 
 }
 
+
+
+/* =====================================================
+   META E PRODUÇÃO - HORA ATUAL
+===================================================== */
+
+.lancamento-hora {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #294a73;
+}
+
+.lancamento-hora-titulo {
+  font-size: 8px;
+  color: #9ec5f5;
+  font-weight: 800;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.hora-atual-card {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 5px;
+  align-items: stretch;
+}
+
+.hora-atual-bloco {
+  background: #162844;
+  border: 1px solid #294a73;
+  border-radius: 5px;
+  padding: 5px 4px;
+  text-align: center;
+  min-width: 0;
+}
+
+.hora-atual-bloco.hora {
+  background: #172a47;
+  border-color: #55a2ff;
+}
+
+.hora-atual-label {
+  font-size: 7px;
+  color: #9ec5f5;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.hora-atual-valor {
+  margin-top: 3px;
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.hora-atual-bloco.hora .hora-atual-valor {
+  color: #55e878;
+}
+
+.hora-atual-intervalo {
+  background: #2b2633;
+  border: 1px solid #6f6277;
+  border-radius: 5px;
+  padding: 7px;
+  text-align: center;
+  font-size: 9px;
+  color: #d6c4df;
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   LANÇAMENTO POR HORA - LATERAL DIREITA DO CARTÃO
+===================================================== */
+
+.peca-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 88px;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.peca-principal {
+  min-width: 0;
+}
+
+.lancamento-hora {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+  display: flex;
+  height: 100%;
+}
+
+.lancamento-hora-titulo {
+  display: none;
+}
+
+.hora-atual-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+}
+
+.hora-atual-bloco {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #162844;
+  border: 1px solid #294a73;
+  border-radius: 5px;
+  padding: 4px 3px;
+  text-align: center;
+  min-width: 0;
+}
+
+.hora-atual-bloco.hora {
+  background: #172a47;
+  border-color: #55a2ff;
+}
+
+.hora-atual-label {
+  font-size: 7px;
+  color: #9ec5f5;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.hora-atual-valor {
+  margin-top: 2px;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.hora-atual-bloco.hora .hora-atual-valor {
+  color: #55e878;
+}
+
+.hora-atual-intervalo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2b2633;
+  border: 1px solid #6f6277;
+  border-radius: 5px;
+  padding: 7px 4px;
+  text-align: center;
+  font-size: 8px;
+  color: #d6c4df;
+  font-weight: 800;
+}
+
+@media (max-width: 650px) {
+  .peca-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hora-atual-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .lancamento-hora {
+    height: auto;
+  }
+}
 
 </style>
 
@@ -1365,24 +1568,31 @@ function obterPercentual(item) {
 
 
   /*
-    Exemplo:
+    O PLANO é calculado por:
 
+    PRODUZIDO - FALTA
+
+    Exemplo de produção em andamento:
     Produzido = 1.917
     Falta = -8.083
+    Plano = 1.917 - (-8.083) = 10.000
 
-    Total = 10.000
+    Exemplo de produção excedente:
+    Produzido = 1.126
+    Falta = 26
+    Plano = 1.126 - 26 = 1.100
 
-    1.917 / 10.000 = 19,17%
+    Percentual = PRODUZIDO / PLANO * 100
+    Portanto, 1.126 / 1.100 = 102,36% -> 102%
   */
 
 
-  const total =
-    produzido +
-    Math.abs(falta);
+  const plano =
+    produzido - falta;
 
 
   if (
-    total <= 0
+    plano <= 0
   ) {
 
     return 0;
@@ -1391,7 +1601,7 @@ function obterPercentual(item) {
 
 
   let percentual =
-    (produzido / total) * 100;
+    (produzido / plano) * 100;
 
 
   if (
@@ -1403,14 +1613,10 @@ function obterPercentual(item) {
   }
 
 
-  if (
-    percentual > 100
-  ) {
-
-    percentual = 100;
-
-  }
-
+  /*
+    NÃO limitar em 100%.
+    Assim a peça pode mostrar 101%, 102%, etc.
+  */
 
   return percentual;
 
@@ -1612,6 +1818,136 @@ function obterPercentualLixo(item) {
 }
 
 
+
+/* =====================================================
+   META E PRODUÇÃO - HORA ATUAL
+
+   08:00 a 15:00 -> Meta N
+   16:00 a 23:00 -> Meta O
+   00:00 a 07:00 -> Meta P
+
+   Pausas:
+   12:00 = almoço
+   19:00 = janta
+   03:00 = ceia
+===================================================== */
+
+function obterHoraAtualProducao() {
+
+  const agora = new Date();
+
+  const hora =
+    String(
+      agora.getHours()
+    ).padStart(
+      2,
+      "0"
+    ) + ":00";
+
+
+  const pausas = {
+    "12:00": "ALMOÇO",
+    "19:00": "JANTA",
+    "03:00": "CEIA"
+  };
+
+
+  let grupo = "";
+
+  if (
+    agora.getHours() >= 8 &&
+    agora.getHours() <= 15
+  ) {
+
+    grupo = "N";
+
+  } else if (
+    agora.getHours() >= 16 &&
+    agora.getHours() <= 23
+  ) {
+
+    grupo = "O";
+
+  } else {
+
+    grupo = "P";
+
+  }
+
+
+  return {
+    HORA: hora,
+    GRUPO: grupo,
+    PAUSA: pausas[hora] || ""
+  };
+
+}
+
+
+function criarLancamentoPorHora(item) {
+
+  const horaAtual =
+    obterHoraAtualProducao();
+
+  if (horaAtual.PAUSA) {
+    return `
+      <div class="lancamento-hora">
+        <div class="hora-atual-intervalo">
+          ⏸️ ${horaAtual.PAUSA}
+        </div>
+      </div>
+    `;
+  }
+
+  const lancamentos =
+    Array.isArray(item["LANCAMENTO POR HORA"])
+      ? item["LANCAMENTO POR HORA"]
+      : [];
+
+  const lancamentoAtual =
+    lancamentos.find(function(lancamento) {
+      return (
+        lancamento.GRUPO === horaAtual.GRUPO &&
+        String(lancamento.HORA).trim() === horaAtual.HORA
+      );
+    });
+
+  let meta = "";
+
+  if (horaAtual.GRUPO === "N") {
+    meta = item["META HORA N"];
+  } else if (horaAtual.GRUPO === "O") {
+    meta = item["META HORA O"];
+  } else {
+    meta = item["META HORA P"];
+  }
+
+  const produzido =
+    lancamentoAtual
+      ? lancamentoAtual.PRODUZIDO
+      : "";
+
+  return `
+    <div class="lancamento-hora">
+      <div class="hora-atual-card">
+
+        <div class="hora-atual-bloco hora">
+          <div class="hora-atual-label">HORA</div>
+          <div class="hora-atual-valor">${horaAtual.HORA}</div>
+        </div>
+
+        <div class="hora-atual-bloco">
+          <div class="hora-atual-label">META/PRODUZIDO</div>
+          <div class="hora-atual-valor">
+            ${numero(meta).toLocaleString("pt-BR")} / ${numero(produzido).toLocaleString("pt-BR")}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  `;
+}
+
 /* =====================================================
    CRIAR PEÇA
 ===================================================== */
@@ -1672,6 +2008,14 @@ function criarPeca(item) {
     );
 
 
+  const diasProducao =
+    item["DIAS DE PRODUÇÃO"] ??
+    item["DIAS_DE_PRODUÇÃO"] ??
+    item["DIAS DE PRODUCAO"] ??
+    item["DIAS_PRODUCAO"] ??
+    0;
+
+
   let classePercentualLixo =
     "info-percentual-lixo";
 
@@ -1710,7 +2054,11 @@ function criarPeca(item) {
 
   peca.innerHTML = `
 
-    <div class="peca-topo">
+    <div class="peca-layout">
+
+      <div class="peca-principal">
+
+        <div class="peca-topo">
 
 
       <div class="codigo-area">
@@ -1726,10 +2074,21 @@ function criarPeca(item) {
           ${codigo}
         </div>
 
-        <div
-          class="status status-${status}"
-        >
-          ${status}
+        <div class="status-linha">
+
+          <div
+            class="status status-${status}"
+          >
+            ${status}
+          </div>
+
+          <div class="dias-producao">
+            • ${diasProducao}
+            <span class="dias-producao-numero">
+              ${Number(diasProducao) === 1 ? "DIA" : "DIAS"}
+            </span>
+          </div>
+
         </div>
 
       </div>
@@ -1754,7 +2113,7 @@ function criarPeca(item) {
 
           <div
             class="barra-progresso ${barra}"
-            style="width:${percentual}%"
+            style="width:${Math.min(100, percentual)}%"
           ></div>
 
         </div>
@@ -1827,6 +2186,13 @@ function criarPeca(item) {
 
       </div>
 
+
+    </div>
+
+
+      </div>
+
+      ${criarLancamentoPorHora(item)}
 
     </div>
 
@@ -1933,13 +2299,22 @@ function criarMaquina(
 
 
   /*
-    Caso não exista nenhuma
-    peça com STATUS.
+    Caso não exista nenhuma peça para exibir,
+    mostramos o STATUS real da máquina.
   */
 
   if (
     registrosValidos.length === 0
   ) {
+
+    const statusMaquina =
+      registros
+        .map(function(item) {
+          return normalizarStatus(item.STATUS);
+        })
+        .find(function(status) {
+          return status !== "";
+        }) || "";
 
     conteudo.innerHTML = `
 
@@ -1949,9 +2324,24 @@ function criarMaquina(
           SEM PRODUÇÃO
         </div>
 
-        <div>
-          COM STATUS
-        </div>
+        ${
+          statusMaquina
+            ? `
+              <div style="
+                margin-top:6px;
+                color:#55e878;
+                font-size:13px;
+                font-weight:900;
+              ">
+                ${statusMaquina}
+              </div>
+            `
+            : `
+              <div>
+                SEM STATUS
+              </div>
+            `
+        }
 
       </div>
 
@@ -2555,6 +2945,94 @@ function atualizarData() {
 
 
 
+
+/* =====================================================
+   REMOVE DUPLICAÇÃO DOS TURNOS
+
+   O Código.gs envia 3 registros para a mesma máquina:
+   1º TURNO, 2º TURNO e 3º TURNO.
+
+   Para este painel, cada peça deve aparecer apenas uma vez.
+   Mantemos prioritariamente o registro do 1º TURNO.
+===================================================== */
+
+function removerDuplicidadeTurnos(dados) {
+
+  const grupos = {};
+
+  dados.forEach(function(item) {
+
+    const maquina =
+      String(
+        item.MAQUINA ??
+        item["MÁQUINA"] ??
+        ""
+      ).trim();
+
+    const codigo =
+      String(
+        item.CODIGO ??
+        item["CÓDIGO"] ??
+        ""
+      ).trim();
+
+    const descricao =
+      String(
+        item["DESCRIÇÃO"] ??
+        item.DESCRICAO ??
+        ""
+      ).trim();
+
+    /*
+       Agrupa a mesma peça enviada pelos 3 turnos.
+    */
+    const chave =
+      maquina + "||" + codigo + "||" + descricao;
+
+    if (!grupos[chave]) {
+      grupos[chave] = [];
+    }
+
+    grupos[chave].push(item);
+
+  });
+
+
+  return Object.values(grupos).map(function(registros) {
+
+    /*
+       Mantém o registro do 1º turno como base,
+       pois ele contém os dados principais da peça.
+    */
+    let escolhido =
+      registros.find(function(item) {
+        return item.TURNO === "1º TURNO";
+      }) || registros[0];
+
+
+    /*
+       Preserva o STATUS caso ele esteja preenchido
+       em qualquer um dos registros dos turnos.
+       Isso evita que máquinas como M1 e M9 percam
+       o status ao remover a duplicação.
+    */
+    const registroComStatus =
+      registros.find(function(item) {
+        return normalizarStatus(item.STATUS) !== "";
+      });
+
+    if (registroComStatus) {
+      escolhido = {
+        ...escolhido,
+        STATUS: registroComStatus.STATUS
+      };
+    }
+
+    return escolhido;
+
+  });
+}
+
 /* =====================================================
    CARREGAR DADOS
 ===================================================== */
@@ -2619,8 +3097,14 @@ function carregarDados() {
           }
 
 
+          /*
+             Remove os 3 registros de turno que estavam
+             fazendo a mesma peça aparecer 3 vezes.
+          */
           dadosProducao =
-            dados;
+            removerDuplicidadeTurnos(
+              dados
+            );
 
 
           renderizarPainel(
