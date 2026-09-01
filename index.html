@@ -78,6 +78,59 @@ body {
 }
 
 
+/* =====================================================
+   TOTAL PRODUZIDO NO DIA
+===================================================== */
+
+.total-produzido-dia {
+  min-width: 270px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 18px;
+  border: 1px solid #00d98b;
+  border-radius: 9px;
+  background: linear-gradient(135deg, rgba(0, 217, 139, 0.08), rgba(16, 29, 50, 0.45));
+  box-shadow: inset 0 0 18px rgba(0, 217, 139, 0.04);
+}
+
+.total-produzido-icone {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.total-produzido-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.total-produzido-titulo {
+  color: #f5f7fa;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+
+.total-produzido-valor {
+  margin-top: 3px;
+  color: #00e676;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.total-produzido-unidade {
+  color: #d8e1ec;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+
 .titulo {
 
   margin: 0;
@@ -423,6 +476,15 @@ body {
 
 }
 
+.maquina.manta {
+
+  border-color: #a855f7;
+
+  box-shadow:
+    0 0 3px rgba(168,85,247,0.25);
+
+}
+
 
 .maquina.sem-status {
 
@@ -476,6 +538,13 @@ body {
 .maquina-titulo {
 
   color: #ff3548;
+
+}
+
+.maquina.manta
+.maquina-titulo {
+
+  color: #a855f7;
 
 }
 
@@ -616,6 +685,12 @@ body {
 
 }
 
+.status-MANTA {
+
+  color: #a855f7;
+
+}
+
 
 /* =====================================================
    PROGRESSO
@@ -711,6 +786,12 @@ body {
 .barra-azul {
 
   background: #4d8df7;
+
+}
+
+.barra-roxa {
+
+  background: #a855f7;
 
 }
 
@@ -904,6 +985,10 @@ body {
 
 @media (max-width: 1200px) {
 
+  .total-produzido-dia {
+    min-width: 220px;
+  }
+
   .indicador {
 
     min-width: 150px;
@@ -1046,6 +1131,14 @@ body {
   background: rgba(255, 53, 72, 0.10);
 
   color: #ff3548;
+
+}
+
+.maquina.manta .maquina-titulo {
+
+  background: rgba(168, 85, 247, 0.10);
+
+  color: #a855f7;
 
 }
 
@@ -1224,6 +1317,160 @@ body {
   }
 }
 
+
+/* =====================================================
+   MÉDIA DIÁRIA NO TOPO DO CARTÃO
+===================================================== */
+.peca-topo-novo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(120px, 1fr) 82px;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.media-dia-card {
+  min-width: 0;
+  background: #0d192b;
+  border: 1px solid #00c781;
+  border-radius: 6px;
+  padding: 5px 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.media-dia-icone { font-size: 20px; line-height: 1; }
+
+.media-dia-texto { min-width: 0; text-align: center; }
+
+.media-dia-label {
+  font-size: 8px;
+  font-weight: 900;
+  color: #55e878;
+  white-space: nowrap;
+}
+
+.media-dia-valor {
+  margin-top: 2px;
+  font-size: 20px;
+  font-weight: 900;
+  color: #00e676;
+  line-height: 20px;
+}
+
+.media-dia-unidade {
+  margin-left: 3px;
+  font-size: 8px;
+  color: #dbeafe;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hora-topo-card {
+  background: #172a47;
+  border: 1px solid #55a2ff;
+  border-radius: 6px;
+  padding: 5px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hora-topo-label {
+  font-size: 8px;
+  color: #9ec5f5;
+  font-weight: 800;
+}
+
+.hora-topo-valor {
+  margin-top: 3px;
+  font-size: 17px;
+  color: #55e878;
+  font-weight: 900;
+}
+
+.informacoes.informacoes-cinco {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.info-meta .info-valor {
+  color: #ffffff;
+  font-size: 13px;
+}
+
+.progresso-area.progresso-abaixo {
+  margin-top: 7px;
+}
+
+@media (max-width: 900px) {
+  .peca-topo-novo { grid-template-columns: 1fr 1fr; }
+  .hora-topo-card { grid-column: 1 / -1; }
+  .informacoes.informacoes-cinco { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* =====================================================
+   ALERTA DE PEÇA FINALIZADA
+===================================================== */
+.alerta-finalizado-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(2, 8, 18, 0.78);
+  backdrop-filter: blur(4px);
+}
+
+.alerta-finalizado-overlay.ativo { display: flex; }
+
+.alerta-finalizado {
+  width: min(480px, 96vw);
+  background: linear-gradient(145deg, #101d32, #0b1729);
+  border: 2px solid #ff3548;
+  border-radius: 16px;
+  box-shadow: 0 0 35px rgba(255, 53, 72, 0.35);
+  overflow: hidden;
+  animation: alertaEntrada .25s ease-out;
+}
+
+@keyframes alertaEntrada {
+  from { transform: scale(.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.alerta-finalizado-cabecalho {
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 21px;
+  font-weight: 900;
+  color: #ffffff;
+  background: rgba(255, 53, 72, 0.12);
+  border-bottom: 1px solid rgba(255, 53, 72, 0.45);
+}
+
+.alerta-finalizado-corpo { padding: 22px; text-align: center; }
+.alerta-finalizado-icone { font-size: 46px; margin-bottom: 8px; }
+.alerta-finalizado-subtitulo { color: #ff7b86; font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.alerta-finalizado-codigo { margin-top: 7px; font-size: 28px; font-weight: 900; color: #ffffff; word-break: break-word; }
+.alerta-finalizado-maquina { margin-top: 8px; color: #9ec5f5; font-size: 16px; font-weight: 800; }
+.alerta-finalizado-rodape { padding: 0 22px 22px; }
+.alerta-finalizado-botao {
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: #ff3548;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.alerta-finalizado-botao:hover { filter: brightness(1.1); }
+
 </style>
 
 </head>
@@ -1249,6 +1496,30 @@ body {
       Painel Operacional
       <span>•</span>
       Atualização automática a cada 1 minuto
+    </div>
+
+  </div>
+
+
+  <!-- TOTAL PRODUZIDO NO DIA -->
+
+  <div class="total-produzido-dia">
+
+    <div class="total-produzido-icone">
+      📈
+    </div>
+
+    <div class="total-produzido-info">
+
+      <div class="total-produzido-titulo">
+        TOTAL PRODUZIDO NO DIA
+      </div>
+
+      <div class="total-produzido-valor">
+        <span id="totalProduzidoDia">0</span>
+        <span class="total-produzido-unidade">peças</span>
+      </div>
+
     </div>
 
   </div>
@@ -1341,6 +1612,30 @@ body {
         <div
           class="indicador-numero"
           id="maquinasProgramar"
+        >
+          0
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="indicador roxo">
+
+      <div class="indicador-icone">
+        🟣
+      </div>
+
+      <div class="indicador-info">
+
+        <div class="indicador-titulo">
+          MÁQUINAS EM MANTA
+        </div>
+
+        <div
+          class="indicador-numero"
+          id="maquinasManta"
         >
           0
         </div>
@@ -1693,6 +1988,30 @@ function classeMaquina(registros) {
 
 
   /*
+    Se estiver em MANTA,
+    fica roxa.
+  */
+
+  const manta =
+    registros.some(function(item) {
+
+      return (
+        normalizarStatus(
+          item.STATUS
+        ) === "MANTA"
+      );
+
+    });
+
+
+  if (manta) {
+
+    return "manta";
+
+  }
+
+
+  /*
     Se estiver PRODUZINDO,
     fica verde.
   */
@@ -1750,6 +2069,15 @@ function classeBarra(
   ) {
 
     return "barra-vermelha";
+
+  }
+
+
+  if (
+    status === "MANTA"
+  ) {
+
+    return "barra-roxa";
 
   }
 
@@ -1954,59 +2282,18 @@ function criarLancamentoPorHora(item) {
 
 function criarPeca(item) {
 
-
-  const status =
-    normalizarStatus(
-      item.STATUS
-    );
-
-
-  /*
-    Só mostra peça quando
-    o STATUS estiver preenchido.
-  */
+  const status = normalizarStatus(item.STATUS);
 
   if (!status) {
-
     return null;
-
   }
 
-
-  const codigo =
-    obterCodigo(item);
-
-
-  const percentual =
-    obterPercentual(item);
-
-
-  const produzido =
-    numero(
-      item.PRODUZIDO
-    );
-
-
-  const falta =
-    numero(
-      item.FALTA
-    );
-
-
-  const lixo =
-    numero(
-      item["QTD LIXO"] ??
-      item["QTD_LIXO"] ??
-      item.LIXO ??
-      0
-    );
-
-
-  const percentualLixo =
-    obterPercentualLixo(
-      item
-    );
-
+  const codigo = obterCodigo(item);
+  const percentual = obterPercentual(item);
+  const produzido = numero(item.PRODUZIDO);
+  const falta = numero(item.FALTA);
+  const lixo = numero(item["QTD LIXO"] ?? item["QTD_LIXO"] ?? item.LIXO ?? 0);
+  const percentualLixo = obterPercentualLixo(item);
 
   const diasProducao =
     item["DIAS DE PRODUÇÃO"] ??
@@ -2015,194 +2302,125 @@ function criarPeca(item) {
     item["DIAS_PRODUCAO"] ??
     0;
 
+  const diasNumero = numero(diasProducao);
+  const mediaDia = diasNumero > 0 ? Math.round(produzido / diasNumero) : 0;
 
-  let classePercentualLixo =
-    "info-percentual-lixo";
+  const horaAtual = obterHoraAtualProducao();
+  const lancamentos = Array.isArray(item["LANCAMENTO POR HORA"])
+    ? item["LANCAMENTO POR HORA"]
+    : [];
 
+  const lancamentoAtual = lancamentos.find(function(lancamento) {
+    return (
+      lancamento.GRUPO === horaAtual.GRUPO &&
+      String(lancamento.HORA).trim() === horaAtual.HORA
+    );
+  });
 
-  if (
-    percentualLixo > 10
-  ) {
-
-    classePercentualLixo +=
-      " critico";
-
-  } else if (
-    percentualLixo > 5
-  ) {
-
-    classePercentualLixo +=
-      " alerta";
-
+  let metaHora = "";
+  if (horaAtual.GRUPO === "N") {
+    metaHora = item["META HORA N"];
+  } else if (horaAtual.GRUPO === "O") {
+    metaHora = item["META HORA O"];
+  } else {
+    metaHora = item["META HORA P"];
   }
 
+  const produzidoHora = lancamentoAtual ? lancamentoAtual.PRODUZIDO : "";
 
-  const barra =
-    classeBarra(
-      percentual,
-      status
-    );
+  let classePercentualLixo = "info-percentual-lixo";
+  if (percentualLixo > 10) {
+    classePercentualLixo += " critico";
+  } else if (percentualLixo > 5) {
+    classePercentualLixo += " alerta";
+  }
 
+  const barra = classeBarra(percentual, status);
 
-  const peca =
-    document.createElement("div");
-
-
-  peca.className =
-    "peca";
-
+  const peca = document.createElement("div");
+  peca.className = "peca";
 
   peca.innerHTML = `
 
-    <div class="peca-layout">
-
-      <div class="peca-principal">
-
-        <div class="peca-topo">
-
+    <div class="peca-topo-novo">
 
       <div class="codigo-area">
-
-        <div class="label">
-          CÓDIGO
-        </div>
-
-        <div
-          class="codigo"
-          title="${codigo}"
-        >
-          ${codigo}
-        </div>
+        <div class="label">CÓDIGO</div>
+        <div class="codigo" title="${codigo}">${codigo}</div>
 
         <div class="status-linha">
-
-          <div
-            class="status status-${status}"
-          >
-            ${status}
-          </div>
-
+          <div class="status status-${status}">${status}</div>
           <div class="dias-producao">
             • ${diasProducao}
             <span class="dias-producao-numero">
-              ${Number(diasProducao) === 1 ? "DIA" : "DIAS"}
+              ${Number(diasNumero) === 1 ? "DIA" : "DIAS"}
             </span>
           </div>
-
         </div>
-
       </div>
 
-
-      <div class="progresso-area">
-
-        <div class="progresso-cabecalho">
-
-          <span class="progresso-label">
-            PROGRESSO DA PRODUÇÃO
-          </span>
-
-          <span class="progresso-percentual">
-            ${percentual.toFixed(0)}%
-          </span>
-
+      <div class="media-dia-card">
+        <div class="media-dia-icone">🏭</div>
+        <div class="media-dia-texto">
+          <div class="media-dia-label">MÉDIA/DIA</div>
+          <div>
+            <span class="media-dia-valor">${mediaDia.toLocaleString("pt-BR")}</span>
+            <span class="media-dia-unidade">peças/dia</span>
+          </div>
         </div>
-
-
-        <div class="barra">
-
-          <div
-            class="barra-progresso ${barra}"
-            style="width:${Math.min(100, percentual)}%"
-          ></div>
-
-        </div>
-
       </div>
 
+      <div class="hora-topo-card">
+        <div class="hora-topo-label">HORA</div>
+        <div class="hora-topo-valor">${horaAtual.PAUSA ? "PAUSA" : horaAtual.HORA}</div>
+      </div>
 
     </div>
 
-
-    <div class="informacoes">
-
+    <div class="informacoes informacoes-cinco">
 
       <div class="info">
-
-        <div class="info-label">
-          PRODUZIDO
-        </div>
-
-        <div
-          class="info-valor info-produzido"
-        >
-          ${produzido.toLocaleString("pt-BR")}
-        </div>
-
+        <div class="info-label">PRODUZIDO</div>
+        <div class="info-valor info-produzido">${produzido.toLocaleString("pt-BR")}</div>
       </div>
-
 
       <div class="info">
-
-        <div class="info-label">
-          FALTA
-        </div>
-
-        <div
-          class="info-valor info-falta"
-        >
-          ${falta.toLocaleString("pt-BR")}
-        </div>
-
+        <div class="info-label">FALTA</div>
+        <div class="info-valor info-falta">${falta.toLocaleString("pt-BR")}</div>
       </div>
-
 
       <div class="info">
-
-        <div class="info-label">
-          LIXO
-        </div>
-
-        <div
-          class="info-valor info-lixo"
-        >
-          ${lixo.toLocaleString("pt-BR")}
-        </div>
-
+        <div class="info-label">LIXO</div>
+        <div class="info-valor info-lixo">${lixo.toLocaleString("pt-BR")}</div>
       </div>
-
 
       <div class="info">
-
-        <div class="info-label">
-          % LIXO
-        </div>
-
-        <div
-          class="info-valor ${classePercentualLixo}"
-        >
-          ${percentualLixo.toFixed(0)}%
-        </div>
-
+        <div class="info-label">% LIXO</div>
+        <div class="info-valor ${classePercentualLixo}">${percentualLixo.toFixed(0)}%</div>
       </div>
 
+      <div class="info info-meta">
+        <div class="info-label">META/PRODUZIDO</div>
+        <div class="info-valor">${numero(metaHora).toLocaleString("pt-BR")} / ${numero(produzidoHora).toLocaleString("pt-BR")}</div>
+      </div>
 
     </div>
 
-
+    <div class="progresso-area progresso-abaixo">
+      <div class="progresso-cabecalho">
+        <span class="progresso-label">PROGRESSO DA PRODUÇÃO</span>
+        <span class="progresso-percentual">${percentual.toFixed(0)}%</span>
       </div>
-
-      ${criarLancamentoPorHora(item)}
-
+      <div class="barra">
+        <div class="barra-progresso ${barra}" style="width:${Math.min(100, percentual)}%"></div>
+      </div>
     </div>
 
   `;
 
-
   return peca;
 
 }
-
 
 
 /* =====================================================
@@ -2466,6 +2684,84 @@ function obterLinha(item) {
 }
 
 
+
+
+/* =====================================================
+   ALERTA AUTOMÁTICO - PEÇA FINALIZADA
+===================================================== */
+
+let statusAnteriorPorPeca = {};
+let monitoramentoInicializado = false;
+let filaAlertasFinalizados = [];
+
+function chavePeca(item) {
+  const maquina = String(item.MAQUINA ?? item["MÁQUINA"] ?? "").trim();
+  const codigo = String(obterCodigo(item) ?? "").trim();
+  return maquina + "|" + codigo;
+}
+
+function mostrarProximoAlertaFinalizado() {
+  if (!filaAlertasFinalizados.length) {
+    return;
+  }
+
+  const item = filaAlertasFinalizados[0];
+  const overlay = document.getElementById("alertaFinalizado");
+
+  document.getElementById("alertaFinalizadoCodigo").textContent = obterCodigo(item) || "-";
+  document.getElementById("alertaFinalizadoMaquina").textContent =
+    "Máquina " + String(item.MAQUINA ?? item["MÁQUINA"] ?? "-").trim();
+
+  overlay.classList.add("ativo");
+}
+
+function fecharAlertaFinalizado() {
+  const overlay = document.getElementById("alertaFinalizado");
+  overlay.classList.remove("ativo");
+
+  filaAlertasFinalizados.shift();
+
+  setTimeout(function() {
+    mostrarProximoAlertaFinalizado();
+  }, 180);
+}
+
+function verificarNovasFinalizacoes(dados) {
+  const atual = {};
+  const novas = [];
+
+  (dados || []).forEach(function(item) {
+    const chave = chavePeca(item);
+    if (!chave || chave === "|") return;
+
+    const statusAtual = normalizarStatus(item.STATUS);
+    atual[chave] = statusAtual;
+
+    if (
+      monitoramentoInicializado &&
+      statusAtual === "FINALIZADO" &&
+      statusAnteriorPorPeca[chave] !== "FINALIZADO"
+    ) {
+      novas.push(item);
+    }
+  });
+
+  statusAnteriorPorPeca = atual;
+
+  if (!monitoramentoInicializado) {
+    monitoramentoInicializado = true;
+    return;
+  }
+
+  if (novas.length) {
+    filaAlertasFinalizados.push(...novas);
+
+    const overlay = document.getElementById("alertaFinalizado");
+    if (!overlay.classList.contains("ativo")) {
+      mostrarProximoAlertaFinalizado();
+    }
+  }
+}
 
 /* =====================================================
    RENDERIZAR PAINEL
@@ -2796,6 +3092,8 @@ function atualizarIndicadores(
 
   let programar = 0;
 
+  let manta = 0;
+
 
   Object.keys(maquinas)
     .forEach(
@@ -2880,6 +3178,31 @@ function atualizarIndicadores(
 
         }
 
+
+        /*
+          MÁQUINAS EM MANTA:
+          conta cada máquina apenas uma vez quando
+          existir STATUS = MANTA em qualquer registro.
+        */
+
+        const maquinaManta =
+          registros.some(
+            function(registro) {
+
+              return normalizarStatus(
+                registro.STATUS
+              ) === "MANTA";
+
+            }
+          );
+
+
+        if (maquinaManta) {
+
+          manta++;
+
+        }
+
       }
     );
 
@@ -2901,8 +3224,54 @@ function atualizarIndicadores(
   ).textContent =
     programar;
 
+
+  document.getElementById(
+    "maquinasManta"
+  ).textContent =
+    manta;
+
 }
 
+
+
+/* =====================================================
+   TOTAL PRODUZIDO NO DIA
+===================================================== */
+
+function atualizarTotalProduzidoDia() {
+
+  const total =
+    dadosProducao.reduce(
+      function(soma, item) {
+
+        return soma + numero(
+          item.PRODUZIDO ??
+          item["PRODUZIDO"] ??
+          0
+        );
+
+      },
+      0
+    );
+
+
+  const campo =
+    document.getElementById(
+      "totalProduzidoDia"
+    );
+
+
+  if (campo) {
+
+    campo.textContent =
+      Math.round(total)
+        .toLocaleString(
+          "pt-BR"
+        );
+
+  }
+
+}
 
 
 /* =====================================================
@@ -3107,6 +3476,14 @@ function carregarDados() {
             );
 
 
+          atualizarTotalProduzidoDia();
+
+
+          verificarNovasFinalizacoes(
+            dadosProducao
+          );
+
+
           renderizarPainel(
             filtrarDadosPorLinha(
               dadosProducao
@@ -3208,6 +3585,23 @@ setInterval(
 
 </script>
 
+
+
+<!-- ALERTA AUTOMÁTICO DE PEÇA FINALIZADA -->
+<div id="alertaFinalizado" class="alerta-finalizado-overlay" role="dialog" aria-modal="true">
+  <div class="alerta-finalizado">
+    <div class="alerta-finalizado-cabecalho">🎉 PRODUÇÃO FINALIZADA</div>
+    <div class="alerta-finalizado-corpo">
+      <div class="alerta-finalizado-icone">🏭</div>
+      <div class="alerta-finalizado-subtitulo">Peça concluída</div>
+      <div id="alertaFinalizadoCodigo" class="alerta-finalizado-codigo">-</div>
+      <div id="alertaFinalizadoMaquina" class="alerta-finalizado-maquina">Máquina -</div>
+    </div>
+    <div class="alerta-finalizado-rodape">
+      <button type="button" class="alerta-finalizado-botao" onclick="fecharAlertaFinalizado()">✓ FECHAR</button>
+    </div>
+  </div>
+</div>
 
 </body>
 
